@@ -32,14 +32,14 @@ EduAutoFE simplifies the feature engineering process by:
 ### Transformation Types
 
 #### Single-Variable Transformations
-- **Logarithmic**: Compresses heavy-tailed distributions, useful for data spanning multiple orders of magnitude (prices, populations, word frequencies)
-- **Square Root**: Stabilizes variance in Poisson-distributed data (count data, event frequencies, patient measurements)
-- **Square**: Captures non-linear quadratic relationships (age effects, distance calculations)
-- **Cube**: Captures strong non-linear relationships (accelerating growth patterns, S-curves)
+- **Logarithmic**
+- **Square Root**
+- **Square**
+- **Cube**
 
 #### Pairwise Transformations
-- **Multiplication**: Creates interaction features (area from length × width, population from area × density)
-- **Division**: Creates per-unit measures (BMI, price efficiency, density metrics)
+- **Multiplication**
+- **Division**
 
 ### Additional Features
 - Configurable number of results (`max_results`)
@@ -185,14 +185,6 @@ Common applications: data that spreads over several orders of
 magnitude, such as prices, populations, incomes, number of reviews, 
 word frequencies, and sales figures.
 ```
-
-## Tested Datasets
-
-EduAutoFE has been tested on the following datasets:
-- Titanic (Kaggle) - Binary classification
-- Spaceship Titanic (Kaggle) - Binary classification
-- Medical Cost Personal (Kaggle) - Regression
-- California Housing (Scikit-learn) - Regression
 
 ## Limitations
 
