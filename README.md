@@ -206,14 +206,6 @@ word frequencies, and sales figures.
 - 5-fold cross-validation
 - Transformation candidates are randomized for time-limited runs
 
-## Next Steps
-
-After using EduAutoFE, consider:
-1. Applying recommended transformations to your data
-2. Combining multiple good transformations together
-3. Testing with other models (Random Forest, XGBoost, etc.)
-4. Remember: these transformations help most with linear models
-
 ## License
 
 MIT License - see [LICENSE](LICENSE) file for details.
