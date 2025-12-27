@@ -206,6 +206,10 @@ word frequencies, and sales figures.
 - 5-fold cross-validation
 - Transformation candidates are randomized for time-limited runs
 
+## Acknowledgments
+
+This README was formatted with assistance from Claude AI (Anthropic).
+
 ## License
 
 MIT License - see [LICENSE](LICENSE) file for details.
