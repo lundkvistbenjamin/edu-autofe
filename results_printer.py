@@ -11,7 +11,7 @@ def print_results(df, baseline_score, baseline_std, task_type):
     metric = "Accuracy" if task_type == "classification" else "R2"
     
     print("\n" + "="*60)
-    print(f"{"RESULTS":^60}")
+    print(f"{'RESULTS':^60}")
     print("="*60)
     print(f"\nBaseline {metric}: {baseline_score:.4f} +/- {baseline_std:.4f}")
     
