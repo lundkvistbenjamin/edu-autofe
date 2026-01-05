@@ -49,15 +49,32 @@ EduAutoFE simplifies the feature engineering process by:
 
 ## Installation
 
+### Install from GitHub
+
 ```bash
-pip install pandas numpy scikit-learn
+pip install git+https://github.com/lundkvistbenjamin/edu-autofe.git
 ```
+
+### For Kaggle
+
+In your Kaggle notebook:
+
+```python
+!pip install git+https://github.com/lundkvistbenjamin/edu-autofe.git
+```
+
+### Requirements (already included)
+
+- pandas >= 1.3.0
+- numpy >= 1.20.0
+- scikit-learn >= 1.0.0
 
 ## Quick Start
 
 ```python
 import pandas as pd
-from edu_autofe import EduAutoFE
+from sklearn.preprocessing import LabelEncoder
+from eduautofe import EduAutoFE
 
 # Load your data
 df = pd.read_csv("your_data.csv")
@@ -74,12 +91,43 @@ model = EduAutoFE(max_results=5)
 results = model.fit(X, y)
 ```
 
+## Complete Kaggle Example (Titanic)
+
+```python
+# Install from GitHub
+!pip install git+https://github.com/lundkvistbenjamin/edu-autofe.git
+
+import pandas as pd
+from sklearn.preprocessing import LabelEncoder
+from eduautofe import EduAutoFE
+
+# Load Titanic data
+df = pd.read_csv("/kaggle/input/titanic/train.csv")
+X = df.drop(columns=["Survived"])
+y = df["Survived"]
+
+# Drop unnecessary columns
+X = X.drop(columns=["PassengerId", "Name"])
+
+# Encode categorical variables
+for col in X.select_dtypes(include=['object']).columns:
+    X[col] = LabelEncoder().fit_transform(X[col].astype(str))
+
+# Fill missing values
+X = X.fillna(X.median())
+y = y.fillna(y.median())
+
+# Run EduAutoFE
+model = EduAutoFE(max_minutes=2)
+results = model.fit(X, y)
+```
+
 ## Usage
 
 ### Basic Usage
 
 ```python
-from edu_autofe import EduAutoFE
+from eduautofe import EduAutoFE
 
 # Create instance with default settings
 model = EduAutoFE()
