@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import cross_val_score
-from task_detector import get_model_and_scoring
+from .task_detector import get_model_and_scoring
 
 
 def evaluate_feature(X_base, new_feature, y, task_type):

@@ -5,11 +5,11 @@ import time
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import cross_val_score
 
-from validators import validate_input
-from task_detector import detect_task_type, get_model_and_scoring
-from feature_generator import generate_candidates
-from evaluator import evaluate_feature
-from results_printer import print_results
+from .validators import validate_input
+from .task_detector import detect_task_type, get_model_and_scoring
+from .feature_generator import generate_candidates
+from .evaluator import evaluate_feature
+from .results_printer import print_results
 
 
 class EduAutoFE:
