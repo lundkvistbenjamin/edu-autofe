@@ -6,7 +6,6 @@ setup(
     description="Educational Automated Feature Engineering",
     author="Benjamin Lundkvist",
     packages=find_packages(),
-    py_modules=['eduautofe', 'validators', 'task_detector', 'feature_generator', 'evaluator', 'results_printer'],
     install_requires=[
         "pandas>=1.3.0",
         "numpy>=1.20.0",
