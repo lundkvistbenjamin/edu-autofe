@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 
-
 def validate_input(X, y):
     """
     Validates input data X and y for common issues.
@@ -33,13 +32,36 @@ def validate_input(X, y):
         )
     
     # Check for too many columns
-    if len(X.columns) > 100:
-        raise ValueError(
-            f"Error: Too many columns ({len(X.columns)})\n\n"
-            f"This happens when your dataset has too many features\n"
-            f"or one-hot encoding created too many columns.\n\n"
-            f'Drop with: X = X.drop(columns=["col1", "col2", ...])'
-        )
+    if len(X.columns) > 50:
+        prefix_counts = {}
+        for col in X.columns:
+            if '_' in col:
+                prefix = col.split('_')[0]
+                if prefix not in prefix_counts:
+                    prefix_counts[prefix] = []
+                prefix_counts[prefix].append(col)
+        
+        high_card_prefixes = {prefix: cols for prefix, cols in prefix_counts.items() if len(cols) > 10}
+        
+        if high_card_prefixes:
+            sorted_culprits = sorted(high_card_prefixes.items(), key=lambda x: len(x[1]), reverse=True)
+            
+            culprits_text = ""
+            for prefix, cols in sorted_culprits:
+                culprits_text += f"   '{prefix}' columns ({len(cols)} columns)\n"
+            
+            raise ValueError(
+                f"Error: Too many columns ({len(X.columns)})\n\n"
+                f"Likely culprits:\n{culprits_text}\n"
+                f'Drop with: X = X.drop(columns=["Col1", "Col2", ...])'
+            )
+        else:
+            raise ValueError(
+                f"Error: Too many columns ({len(X.columns)})\n\n"
+                f"This happens when your dataset has too many features\n"
+                f"or one-hot encoding created too many columns.\n\n"
+                f'Drop with: X = X.drop(columns=["col1", "col2", ...])'
+            )
     
     # Check for ID columns
     id_patterns = ["id", "index", "key", "number", "code"]
@@ -58,7 +80,9 @@ def validate_input(X, y):
     cat_cols = X.select_dtypes(exclude=[np.number]).columns.tolist()
     if cat_cols:
         raise ValueError(
-            f"Error: Found text columns: {cat_cols}\n\n"
+            f"Error: Found text columns: {cat_cols}\n"
+            f"This can either be addressed by label encoding them if they should remain ordered in a single column,\nor one-hot encoding them if they should be unordered.\n"
+            f"If they add no value they can be dropped completely.\n\n"
             f"One-hot encode with: X = pd.get_dummies(X, drop_first=True, dtype=int)\n"
             f'Drop with: X = X.drop(columns=["text_col"])\n'
             f'Label encode with: X["col"] = LabelEncoder().fit_transform(X["col"])'
