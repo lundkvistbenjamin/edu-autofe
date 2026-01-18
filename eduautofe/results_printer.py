@@ -8,7 +8,7 @@ def print_results(df, baseline_score, baseline_std, task_type):
         baseline_std: Baseline model standard deviation
         task_type: "classification" or "regression"
     """
-    metric = "Accuracy" if task_type == "classification" else "R2"
+    metric = "F1-Score" if task_type == "classification" else "R2"
     
     print("\n" + "="*60)
     print(f"{'RESULTS':^60}")
@@ -31,8 +31,8 @@ def print_results(df, baseline_score, baseline_std, task_type):
     
     print("\nWhat does this mean?")
     if task_type == "classification":
-        print("Accuracy shows what % of predictions are correct.")
-        print("Higher accuracy = better model performance.")
+        print("F1-Score is the harmonic mean of precision and recall.")
+        print("Higher F1 = better balance between finding all cases and being correct.")
         print("+/- std shows consistency across different data splits.")
     else:
         print("R2 shows what % of variation in the target the model explains.")

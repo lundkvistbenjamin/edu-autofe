@@ -40,4 +40,4 @@ def get_model_and_scoring(task_type):
     if task_type == "regression":
         return LinearRegression(), "r2", "R2"
     else:
-        return LogisticRegression(max_iter=1000, random_state=42), "accuracy", "Accuracy"
+        return LogisticRegression(max_iter=1000, random_state=42), "f1", "F1-Score"
