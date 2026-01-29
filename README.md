@@ -218,14 +218,14 @@ X = X.drop(columns=["Name", "Ticket"])
                           RESULTS                           
 ============================================================
 
-Baseline Accuracy: 0.7901 +/- 0.0157
+Baseline F1: 0.7901 +/- 0.0157
 Best improvement: +0.0123
 
 Top 5 Transformations:
 ------------------------------------------------------------
 
 1. log(Age)
-Accuracy: 0.8025 +/- 0.0274 (+0.0123)
+F1: 0.8025 +/- 0.0274 (+0.0123)
 Log transformation of Age. Compresses the long tail in the high part 
 of heavy-tailed distributions and expands the low part, making data 
 more normally distributed.
