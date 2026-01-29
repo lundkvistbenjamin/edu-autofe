@@ -18,7 +18,7 @@ EduAutoFE simplifies the feature engineering process by:
 - Automatic model selection based on problem type
 
 ### Model Selection
-- **Classification**: Logistic Regression with accuracy scoring
+- **Classification**: Logistic Regression with F1 scoring
 - **Regression**: Linear Regression with R² scoring
 - 5-fold cross-validation for robust evaluation
 
@@ -202,9 +202,9 @@ X = X.drop(columns=["Name", "Ticket"])
 ## Output Interpretation
 
 ### Classification Output
-- **Accuracy**: Percentage of correct predictions
+- **F1**: The harmonic mean of Precision and Recall
 - **+/- std**: Consistency across different data splits
-- Higher accuracy indicates better performance
+- Higher F1-score indicates better model balance and performance
 
 ### Regression Output
 - **R²**: Percentage of variation explained by the model
